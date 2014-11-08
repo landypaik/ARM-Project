@@ -1,0 +1,212 @@
+
+<html>
+<head>
+    <title>Cube Test</title>
+    <script src="../myojs-0.8.18.js"></script>
+    <script src="../three.js"></script>
+  <script src="../OrbitControls.js"></script>
+
+
+</head>
+<body>
+</body>
+<script>
+var zoom = 1.0;
+var zoomIncrease = 1.0;
+
+    var initScene = function () {
+        window.scene = new THREE.Scene();
+        window. renderer = new THREE.WebGLRenderer({
+            alpha: true
+        });
+
+        window.renderer.setClearColor(0x000000, 1);
+        window.renderer.setSize(window.innerWidth, window.innerHeight);
+
+        window.renderer.domElement.style.position = 'fixed';
+        window.renderer.domElement.style.top = 0;
+        window.renderer.domElement.style.left = 0;
+        window.renderer.domElement.style.width = '100%';
+        window.renderer.domElement.style.height = '100%';
+
+        document.body.appendChild(window.renderer.domElement);
+
+        var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+        directionalLight.position.set( 0, 0.5, 1 );
+        window.scene.add(directionalLight);
+
+        window.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+        window.camera.position.fromArray([0, 0, 250]);
+        window.camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        //initalize controls
+        //var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        //resize function
+        window.addEventListener('resize', function () {
+
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.render(scene, camera);
+            //controls.update();
+
+        }, false);
+
+       
+     //Zoom function
+        var fov = camera.fov, zoom = 1.0;
+
+        function render()
+        {
+            console.log("render");
+            requestAnimationFrame(render);
+            //controls.update();
+        };
+       
+        function zooming(){
+
+        console.log("zooming");
+        //global va zoomIncrease is adjusted in the wave in and wave out functions below.
+          camera.fov = fov * zoom;
+          camera.updateProjectionMatrix();
+          zoom += (zoomIncrease-1);
+          
+
+          if ( zoom <= 0.2)
+            {
+             zoom = 0.2;
+            } else if(zoom >= 2.5)
+            {
+                zoom = 2.5;
+            }
+          renderer.render(scene, camera);
+          
+        };
+        /*
+        function zooming(isZoomOut, scale) 
+        {
+            if(isZoomOut == true){
+                controls.dollyIn(scale);
+            } else {
+                 controls.dollyOut(scale);
+             }
+             render();
+        };
+*/
+        //add camera to scene
+        scene.add(camera);
+
+         
+
+        //create box
+        var geometry = new THREE.BoxGeometry(150, 150, 50);
+        //create color + texture
+        var material = new THREE.MeshPhongMaterial({color: 0x15bdde});
+        //connect cube and window, set position and shadow
+        window.cube = new THREE.Mesh(geometry, material);
+        cube.position.set(0,0,0);
+        cube.castShadow = true;
+        cube.receiveShadow = true;
+        //formally add the cube, now that the above 5 commands are all done.
+        scene.add(cube);
+
+        renderer.render(scene, camera);
+    
+
+
+
+    var initMyo = function() {
+        "use strict";
+
+        window.hub = new Myo.Hub();
+        window.quaternion = new THREE.Quaternion();
+        var currentPose;
+
+        //POSITION
+        window.hub.on('frame', function(frame) {
+
+            window.quaternion.x = frame.rotation.y;
+            window.quaternion.y = frame.rotation.z;
+            window.quaternion.z = -frame.rotation.x;
+            window.quaternion.w = frame.rotation.w;
+
+            if(!window.baseRotation) {
+                window.baseRotation = quaternion.clone();
+                window.baseRotation = window.baseRotation.conjugate();
+            }
+
+            window.quaternion.multiply(baseRotation);
+            window.quaternion.normalize();
+            window.quaternion.z = -quaternion.z;
+
+            window.cube.setRotationFromQuaternion(window.quaternion);
+
+            renderer.render(scene, camera);
+        });
+
+        //POSE
+                window.hub.on('pose', function(pose) {
+            currentPose = pose;
+            switch(currentPose.type) {
+                case currentPose.POSE_FIST:
+                console.log("Fist of power");
+                //window.cube.traverse(function(child){child.visible = true;});
+               //THREE.SceneUtils.traverseHierarchy( window.cube, function ( object ) { window.cube.visible = false; } );
+                    
+                    
+                    break;
+                case currentPose.POSE_WAVE_IN:
+                //if statement fixes the zoom momentum problem
+
+                 if(zoomIncrease < 1.0) 
+                {
+                    zoomIncrease = 1.0;
+                }
+                for(var i = 0; i <= 20.0; i++)
+                {
+                    zoomIncrease += i/100;
+                    zooming();
+                    setTimeout(function(){},10000);
+
+                }
+                    //currentPose = currentPose.POSE_REST;
+                    break;
+                case currentPose.POSE_WAVE_OUT:
+                //if statement fixes the zoom momentum problem
+                if(zoomIncrease > 1.0) 
+                {
+                    zoomIncrease = 1.0;
+                }
+                for(var i = 0; i <= 20.0; i++)
+                {
+                    zoomIncrease -= 0.01;
+                    zooming();
+                    setTimeout(function(){},10000);
+                }
+                    //currentPose = currentPose.POSE_REST;
+                    break;
+                case currentPose.POSE_FINGERS_SPREAD:
+               // window.cube.traverse(function(child){child.visible = false;});
+                //THREE.SceneUtils.traverseHierarchy( window.cube, function ( object ) { window.cube.visible = true; } );
+
+
+                render();
+                    break;
+                case currentPose.POSE_TWIST_IN:
+                
+                    break;
+                case currentPose.POSE_REST:
+                default:
+                //console.log("default");
+               
+                    break;
+            }
+        });
+    };
+    
+    initMyo();
+};
+initScene();
+</script>
+</html>
