@@ -48,11 +48,19 @@
               'awe-jsartoolkit-dependencies.js',
               'awe.marker_ar.js',
             ],
+<<<<<<< HEAD
+=======
+            //define POIs
+>>>>>>> FETCH_HEAD
             success: function() { 
                 awe.setup_scene();			
                 awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false});
                 awe.pois.add({ id:'poi_2', position: { x:100, y:0, z:10000 }, visible: false});
                 awe.pois.add({ id:'poi_3', position: { x:100, y:0, z:10000 }, visible: false});
+<<<<<<< HEAD
+=======
+                //projecton 1, (poi 1)
+>>>>>>> FETCH_HEAD
                 awe.projections.add({ 
                       id:'projection_1', 
                     position: { x:0, y:0, z:1 },
@@ -61,7 +69,11 @@
                     texture: { path: 'awe_by_buildAR.png' },
                     }, { poi_id: 'poi_1' });
                 
+<<<<<<< HEAD
                 
+=======
+                //projecton 4, (poi 2)
+>>>>>>> FETCH_HEAD
                 awe.projections.add({ 
                       id:'projection_4', 
                     position: { x:0, y:0, z:0 },
@@ -74,13 +86,24 @@
                     alert(pois.list());
 
                 alert(pois[0]); 
+<<<<<<< HEAD
+=======
+
+                //projecton 2, (poi 3)
+>>>>>>> FETCH_HEAD
                 awe.projections.add({ 
                       id:'projection_2', 
                     position: { x:0, y:0, z:1 },
                     geometry: { shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
                     texture: { path: 'awe_by_buildAR.png' },
+<<<<<<< HEAD
                     }, { poi_id: 'poi_3' });
+=======
+                }, 
+                { poi_id: 'poi_3' });
+                
+>>>>>>> FETCH_HEAD
                 awe.projections.add({ 
                       id:'projection_3', 
                     position: { x:0, y:0, z:0 },
@@ -88,14 +111,26 @@
                     //shape.radiusTop, shape.radiusBottom, shape.height, shape.radiusSegments, shape.heightSegments, shape.openEnded);
                     material:{ type: 'phong', color: 0xFFFFFF },     
                      texture: { path: 'awe_by_buildAR.png' },
+<<<<<<< HEAD
                     }, { poi_id: 'poi_3' });
                 
                 awe.events.add([{
+=======
+                    }, 
+                    { poi_id: 'poi_3' });
+                
+                awe.events.add([{
+                  
+>>>>>>> FETCH_HEAD
                         id: 'ar_tracking_marker',
                         device_types: {
                                 pc: 1,
                                 android: 1
                         },
+<<<<<<< HEAD
+=======
+
+>>>>>>> FETCH_HEAD
                         register: function(handler) {
                                 window.addEventListener('ar_tracking_marker', handler, false);
                         },
@@ -108,6 +143,7 @@
                                                 awe.pois.update({
                                                         data: {
                                             visible: true,
+<<<<<<< HEAD
                         position: { x:0, y:0, z:0 },
                               matrix: event.detail['27'].transform
                               },
@@ -116,6 +152,16 @@
                               }
                               });
                               }
+=======
+                                          position: { x:0, y:0, z:0 },
+                                                matrix: event.detail['27'].transform
+                                                },
+                                                where: {
+                                                id: 'poi_1'
+                                                }
+                                                });
+                                                }
+>>>>>>> FETCH_HEAD
                                         else {
                                             awe.pois.update({
                                                 data: {
@@ -126,6 +172,7 @@
                                                             }
                                                     });
                                             }
+<<<<<<< HEAD
                         if (event.detail['4']) { // we are mapping marker #4 to this projection
                                                 awe.pois.update({
                                                         data: {
@@ -148,10 +195,43 @@
                                                             }
                                                     });
                                             }
+=======
+                            if (event.detail['4']) 
+                            { // we are mapping marker #4 to this projection
+                                awe.pois.update
+                                ({
+                                    data: 
+                                    {
+                                      visible: true,
+                                      position: { x:0, y:0, z:0 },
+                                      matrix: event.detail['4'].transform
+                                    },
+                                  where: 
+                                  {
+                                    id: 'poi_2'
+                                  }
+                                });
+                              }
+                            else 
+                            {
+                              awe.pois.update
+                              ({
+                                data: 
+                                {
+                                  visible: false
+                                },
+                                where: 
+                                {
+                                  id: 'poi_2'
+                                }
+                              });
+                            }
+>>>>>>> FETCH_HEAD
                           
                                   
                         if ((projection_1.position.x - projection_4.position.x) < 50) {
                             awe.pois.update({
+<<<<<<< HEAD
                                                         data: {
                                             visible: true,
                         position: { x:0, y:0, z:0 },
@@ -174,6 +254,30 @@
                                     }
                                   awe.scene_needs_rendering = 1;
                           }
+=======
+                              data: {
+                                visible: true,
+                                position: { x:0, y:0, z:0 },
+                                matrix: event.detail['27'].transform
+                              },
+                              where: {
+                                id: 'poi_3'
+                              }
+                            });
+                        }
+                        else {
+                          awe.pois.update({
+                            data: {
+                              visible: false
+                            },
+                            where: {
+                              id: 'poi_3'
+                            }
+                          });
+                        }
+                    awe.scene_needs_rendering = 1;
+                  }
+>>>>>>> FETCH_HEAD
                     }
             }])
                   },
