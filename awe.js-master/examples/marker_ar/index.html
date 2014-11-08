@@ -51,15 +51,35 @@
 			        awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
 			        awe.projections.add({ 
 			          id:'projection_1', 
+			          			position: {x:0,y:0,z:0},
 								//geometry: { shape: 'cube', x:120, y:120, z:120 },
-								geometry: { shape: 'sphere', radius:100, widthSegments:128, heightSegments:128},
-			          material:{ type: 'phong', color: 0xFFFFFF }, 
-                texture: { path: 'awe_by_buildAR.png' },
+								geometry: { shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
+			          			material:{ type: 'phong', color: 0xFFFFFF }, 
+                				texture: { path: 'redGradient.jpg' },
 			        }, { poi_id: 'poi_1' });
+
+			        // add 2nd object
+			        awe.projections.add({ 
+			          id:'projection_2',
+			          			position: {x:40,y:40,z:0}, 
+								geometry: { shape: 'sphere', radius:30, widthSegments:128, heightSegments:128},
+			          			material:{ type: 'phong', color: 0xFFFFFF }, 
+                				texture: { path: 'whiteGradient.jpg' },
+			        }, { poi_id: 'poi_1' });
+
+		          	// add 3rd object
+		          	awe.projections.add({ 
+			          id:'projection_3',
+			          			position: {x:-40,y:40,z:0}, 
+								geometry: { shape: 'sphere', radius:30, widthSegments:128, heightSegments:128},
+			          			material:{ type: 'phong', color: 0xFFFFFF }, 
+                				texture: { path: 'whiteGradient.jpg' },
+			        }, { poi_id: 'poi_1' });
+
 			        awe.events.add([{
 								id: 'ar_tracking_marker',
 								device_types: {
-									pc: 1,
+									pc: 1, 
 									android: 1
 								},
 								register: function(handler) {
@@ -78,7 +98,7 @@
 													matrix: event.detail['19'].transform
 												},
 												where: {
-													id: 'poi_1'
+													id: 'poi_1',
 												}
 											});
 										}
@@ -88,7 +108,7 @@
 													visible: false
 												},
 												where: {
-													id: 'poi_1'
+													id: 'poi_1',
 												}
 											});
 										}
@@ -96,6 +116,9 @@
 									}
 								}
 							}])
+
+
+
 			      },
           },
           {
