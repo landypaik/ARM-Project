@@ -9,6 +9,8 @@
 
 </head>
 <body>
+
+
 </body>
 <script>
 var zoom = 1.0;
@@ -112,8 +114,8 @@ var zoomIncrease = 1.0;
         scene.add(cube);
 
         renderer.render(scene, camera);
-    
 
+window.cube.onMouseDown = function ( event ) {
 
 
     var initMyo = function() {
@@ -207,6 +209,7 @@ var zoomIncrease = 1.0;
     
     initMyo();
 };
+
 initScene();
 </script>
 </html>
