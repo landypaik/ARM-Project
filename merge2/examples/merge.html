@@ -26,9 +26,70 @@
 <script type="text/javascript" src="../js/awe.js"></script>
 <script>
     var showCompose = false;
+    var playing1 = false;
+    var playing2 = false;
+    var playing3 = false;
+    var playing4 = false;
   //addEventListener("keypress", function(event) {
     addEventListener("mousedown", function(event) {
         console.log("click");
+
+        if(!showCompose)
+        {
+            var p = awe.projections.view('projection_4');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 2,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 },
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'images/h2o.png' },
+                  },
+                  where:{ id:'projection_4' }
+                });
+
+                p = awe.projections.view('projection_1');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 2,
+                    },
+                    display:false,
+                  },
+                  where:{ id:'projection_1' }
+                });
+            }
+            else
+            {
+                var p = awe.projections.view('projection_4');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 },
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'images/oxygen.png' },
+                  },
+                  where:{ id:'projection_4' }
+                });
+
+                p = awe.projections.view('projection_1');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    display:true,
+                  },
+                  where:{ id:'projection_1' }
+                });
+            }
     //console.log(String.fromCharCode(event.charCode));
     /*var p = awe.projections.view('projection_1');
 
@@ -43,6 +104,7 @@
                 });
 */
     showCompose = !showCompose;
+    
    // showCompose = true;
   });
 
@@ -84,27 +146,27 @@
                 awe.setup_scene(); 
 
                 // HYDROGEN
-                /*awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_1', 
                     geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/Hydrogren.png' },
                     }, 
                     { poi_id: 'poi_1' 
                 });
 
                 // OXYGEN
-                awe.pois.add({ id:'poi_2', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.pois.add({ id:'poi_4', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
-                    id:'projection_2', 
+                    id:'projection_4', 
                     geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/oxygen.png' },
                     }, 
-                    { poi_id: 'poi_2' 
+                    { poi_id: 'poi_4' 
                 });
-    */
+    
                 // WATER MOLECULE (COMPOSITION)
                 /*awe.pois.add({ id:'poi_3', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
@@ -150,23 +212,24 @@
                 });
 
                 // CARBON
-               /* awe.pois.add({ id:'poi_7', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.pois.add({ id:'poi_7', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_7', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/carbon.png' },
                     }, 
                     { poi_id: 'poi_7' 
-                });*/
+                });
 
                 // BEAT1
                 awe.pois.add({ id:'poi_8', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_8', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
-                    material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                                geometry: { shape: 'cube', x:120, y:120, z:120 },
+                      material:{ type: 'phong', color: 0xFFFFFF }, 
+                      //sound: { path: 'sounds/sounds1.mp3' },
+                texture: { path: 'images/blueguy.png' },
                     }, 
                     { poi_id: 'poi_8' 
                 });
@@ -175,9 +238,10 @@
                 awe.pois.add({ id:'poi_9', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_9', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
-                    material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                                geometry: { shape: 'cube', x:120, y:120, z:120 },
+                      material:{ type: 'phong', color: 0xFFFFFF }, 
+                      //sound: { path: 'sounds/sounds2.mp3' },
+                texture: { path: 'images/greenguy.png' },
                     }, 
                     { poi_id: 'poi_9' 
                 });
@@ -186,9 +250,10 @@
                 awe.pois.add({ id:'poi_10', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_10', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
-                    material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                                geometry: { shape: 'cube', x:120, y:120, z:120 },
+                      material:{ type: 'phong', color: 0xFFFFFF }, 
+                      //sound: { path: 'sounds/sounds3.mp3' },
+                texture: { path: 'images/redguy.png' },
                     }, 
                     { poi_id: 'poi_10' 
                 });
@@ -197,12 +262,35 @@
                 awe.pois.add({ id:'poi_11', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_11', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
-                    material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                                geometry: { shape: 'cube', x:120, y:120, z:120 },
+                      material:{ type: 'phong', color: 0xFFFFFF },
+                      //sound: { path: 'sounds/sounds4.mp3' }, 
+                texture: { path: 'images/yellowguy.png' },
                     }, 
                     { poi_id: 'poi_11' 
                 });
+
+                // CARBON DIOXIDE
+                /*awe.pois.add({ id:'poi_12', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_12', 
+                                geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'images/sunmap.png' },
+                    }, 
+                    { poi_id: 'poi_12' 
+                });
+
+                // WATER
+                awe.pois.add({ id:'poi_13', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_13', 
+                                geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'images/sunmap.png' },
+                    }, 
+                    { poi_id: 'poi_13' 
+                });*/
 
                 // SUN
                 awe.pois.add({ id:'poi_19', position: { x:0, y:0, z:10000 }, visible: false });
@@ -323,7 +411,7 @@
                                         id: 'poi_2'
                                     }
                                 });*/
-                               /* }
+                               /* } 
                                 else
                                 {
                                     awe.pois.update({
@@ -351,7 +439,33 @@
                             }   
 */
 
-                            // VENUS
+                            // HYDROGEN
+                            if (event.detail['1']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['1'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_1'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_1'
+                                    }
+                                });
+                            } 
+
+                            // MERCURY
                             if (event.detail['2']) { // we are mapping marker #64 to this projection
                                 
                                 awe.pois.update({
@@ -399,6 +513,32 @@
                                     },
                                     where: {
                                         id: 'poi_3'
+                                    }
+                                });
+                            }
+
+                            // OXYGEN
+                            if (event.detail['4']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['4'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_4'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_4'
                                     }
                                 });
                             } 
@@ -456,7 +596,7 @@
                             }
 
                             // CARBON
-                           /* if (event.detail['7']) { // we are mapping marker #64 to this projection
+                            if (event.detail['7']) { // we are mapping marker #64 to this projection
                                 
                                 awe.pois.update({
                                     data: {
@@ -479,11 +619,16 @@
                                         id: 'poi_7'
                                     }
                                 });
-                            }*/
+                            }
 
                             // BEAT1
                             if (event.detail['8']) { // we are mapping marker #64 to this projection
-                                
+                                var audio = new Audio('sounds/sounds1.mp3');
+                                if(!playing1){
+                                    audio.play();
+                                    playing1=true;
+                                }
+
                                 awe.pois.update({
                                     data: {
                                         visible: true,
@@ -509,6 +654,11 @@
 
                             // BEAT2
                             if (event.detail['9']) { // we are mapping marker #64 to this projection
+                                var audio = new Audio('sounds/sounds2.mp3');
+                                if(!playing2){
+                                    audio.play();
+                                    playing2=true;
+                                }
                                 
                                 awe.pois.update({
                                     data: {
@@ -535,7 +685,11 @@
 
                             // BEAT3
                             if (event.detail['10']) { // we are mapping marker #64 to this projection
-                                
+                                var audio = new Audio('sounds/sounds3.mp3');
+                                if(!playing3){
+                                    audio.play();
+                                    playing3=true;
+                                }
                                 awe.pois.update({
                                     data: {
                                         visible: true,
@@ -561,7 +715,11 @@
 
                             // BEAT4
                             if (event.detail['11']) { // we are mapping marker #64 to this projection
-                                
+                                var audio = new Audio('sounds/sounds4.mp3');
+                                if(!playing4){
+                                    audio.play();
+                                    playing4=true;
+                                }
                                 awe.pois.update({
                                     data: {
                                         visible: true,
@@ -628,6 +786,11 @@
       }
     });
   });
+
+function isPlaying(playerId) {
+    var player = document.getElementById(playerId);
+    return !player.paused && !player.ended && 0 < player.currentTime;
+}
 </script>
 </body>
 <script>
@@ -737,10 +900,24 @@ var zoomIncrease = 1.0;
                 case currentPose.POSE_FIST:
                 console.log("Fist of power");
 
+                var p = awe.projections.view('projection_1');
 
-                var p = awe.projections.view('projection_2');
+                if(p.scale.x>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_1', }
+                });
+                 }
 
-                if(p.scale>1)
+                p = awe.projections.view('projection_2');
+
+                if(p.scale.x>1)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -755,7 +932,7 @@ var zoomIncrease = 1.0;
 
                  p = awe.projections.view('projection_3');
 
-                if(p.scale>1)
+                if(p.scale.x>1)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -768,9 +945,9 @@ var zoomIncrease = 1.0;
                 });
                  }
 
-                 p = awe.projections.view('projection_5');
+                 p = awe.projections.view('projection_4');
 
-                if(p.scale>1)
+                if(p.scale.x>1)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -779,13 +956,28 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
                   },
-                  where:{ id:'projection_5', }
+                  where:{ id:'projection_4', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_5');
+
+                if(p.scale.x>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_5' }
                 });
                  }
 
                  p = awe.projections.view('projection_6');
 
-                if(p.scale>1)
+                if(p.scale.x>1)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -794,13 +986,13 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
                   },
-                  where:{ id:'projection_6', }
+                  where:{ id:'projection_6' }
                 });
                  }
 
-                 p = awe.projections.view('projection_8');
+                 p = awe.projections.view('projection_7');
 
-                if(p.scale>1)
+                if(p.scale.x>1)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -809,58 +1001,13 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
                   },
-                  where:{ id:'projection_8', }
-                });
-                 }
-
-                 p = awe.projections.view('projection_9');
-
-                if(p.scale>1)
-                {
-                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
-                  data:{
-                    animation: {
-                      duration: 3,
-                    },
-                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
-                  },
-                  where:{ id:'projection_9', }
-                });
-                 }
-
-                 p = awe.projections.view('projection_10');
-
-                if(p.scale>1)
-                {
-                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
-                  data:{
-                    animation: {
-                      duration: 3,
-                    },
-                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
-                  },
-                  where:{ id:'projection_10', }
-                });
-                 }
-
-                 p = awe.projections.view('projection_11');
-
-                if(p.scale>1)
-                {
-                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
-                  data:{
-                    animation: {
-                      duration: 3,
-                    },
-                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
-                  },
-                  where:{ id:'projection_11', }
+                  where:{ id:'projection_7' }
                 });
                  }
 
                  p = awe.projections.view('projection_19');
 
-                if(p.scale>1)
+                if(p.scale.x>1)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -879,8 +1026,19 @@ var zoomIncrease = 1.0;
                     break;
                 case currentPose.POSE_WAVE_IN:
                 console.log("wave in");
-                
-                var p = awe.projections.view('projection_2');
+                var p = awe.projections.view('projection_1');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+                p = awe.projections.view('projection_2');
 
 
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
@@ -892,6 +1050,84 @@ var zoomIncrease = 1.0;
                   },
                   where:{ id:'projection_2' }
                 });
+
+                p = awe.projections.view('projection_3');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_3' }
+                });
+
+                p = awe.projections.view('projection_4');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_4' }
+                });
+
+                p = awe.projections.view('projection_5');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_5' }
+                });
+
+                p = awe.projections.view('projection_6');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_6' }
+                });
+
+                p = awe.projections.view('projection_7');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_7' }
+                });
+
+                p = awe.projections.view('projection_19');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_19' }
+                });
                     //currentPose = currentPose.POSE_REST;
                     break;
                 case currentPose.POSE_WAVE_OUT:
@@ -899,7 +1135,19 @@ var zoomIncrease = 1.0;
 
                 //alert(window.awe.pois.list(0)[0].origin);
 
-                var p = awe.projections.view('projection_2');
+                var p = awe.projections.view('projection_1');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+
+                p = awe.projections.view('projection_2');
 
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -909,6 +1157,76 @@ var zoomIncrease = 1.0;
                     rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
                   },
                   where:{ id:'projection_2' }
+                });
+
+                p = awe.projections.view('projection_3');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_3' }
+                });
+
+                p = awe.projections.view('projection_4');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_4' }
+                });
+
+                p = awe.projections.view('projection_5');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_5' }
+                });
+
+                p = awe.projections.view('projection_6');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_6' }
+                });
+                p = awe.projections.view('projection_7');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_7' }
+                });
+                p = awe.projections.view('projection_19');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_19' }
                 });
                 /*
                 awe.projections.update({
@@ -926,11 +1244,26 @@ var zoomIncrease = 1.0;
                 case currentPose.POSE_FINGERS_SPREAD:
                 console.log("fingers spread");
 
-                
-                var p = awe.projections.view('projection_2');
-
-                if(p.scale<4)
+                var p = awe.projections.view('projection_1');
+                console.log(p.scale);
+                if(p.scale.x<8)
                 {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+                 }
+
+                p = awe.projections.view('projection_2');
+                console.log(p.scale);
+                if(p.scale.x<8)
+                {
+                    console.log("ENTER??");
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
                     animation: {
@@ -944,7 +1277,7 @@ var zoomIncrease = 1.0;
 
                  p = awe.projections.view('projection_3');
 
-                if(p.scale<4)
+                if(p.scale.x<8)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -957,9 +1290,9 @@ var zoomIncrease = 1.0;
                 });
                  }
 
-                 p = awe.projections.view('projection_5');
+                p = awe.projections.view('projection_4');
 
-                if(p.scale<4)
+                if(p.scale.x<8)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -968,13 +1301,28 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
                   },
-                  where:{ id:'projection_5', }
+                  where:{ id:'projection_4' }
+                });
+                 }
+
+                 p = awe.projections.view('projection_5');
+
+                if(p.scale.x<8)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_5' }
                 });
                  }
 
                  p = awe.projections.view('projection_6');
 
-                if(p.scale<4)
+                if(p.scale.x<8)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -983,13 +1331,13 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
                   },
-                  where:{ id:'projection_6', }
+                  where:{ id:'projection_6' }
                 });
                  }
 
-                 p = awe.projections.view('projection_8');
+                 p = awe.projections.view('projection_7');
 
-                if(p.scale<4)
+                if(p.scale.x<8)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -998,58 +1346,13 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
                   },
-                  where:{ id:'projection_8', }
-                });
-                 }
-
-                 p = awe.projections.view('projection_9');
-
-                if(p.scale<4)
-                {
-                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
-                  data:{
-                    animation: {
-                      duration: 3,
-                    },
-                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
-                  },
-                  where:{ id:'projection_9', }
-                });
-                 }
-
-                 p = awe.projections.view('projection_10');
-
-                if(p.scale<4)
-                {
-                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
-                  data:{
-                    animation: {
-                      duration: 3,
-                    },
-                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
-                  },
-                  where:{ id:'projection_10', }
-                });
-                 }
-
-                 p = awe.projections.view('projection_11');
-
-                if(p.scale<4)
-                {
-                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
-                  data:{
-                    animation: {
-                      duration: 3,
-                    },
-                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
-                  },
-                  where:{ id:'projection_11', }
+                  where:{ id:'projection_7' }
                 });
                  }
 
                  p = awe.projections.view('projection_19');
 
-                if(p.scale<4)
+                if(p.scale.x<8)
                 {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
