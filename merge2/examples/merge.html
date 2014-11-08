@@ -1,0 +1,365 @@
+<html>
+<head>
+    <title>Accel rotation</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<meta charset="utf-8"/>
+<style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+}
+#container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+</style>
+    <script src="../myojs-0.8.18.js"></script>
+    <script src="lib/three.js"></script>
+
+</head>
+<body>
+    <div id="container"></div>
+<script type="text/javascript" src="../js/awe.js"></script>
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+    window.awe.init({
+      device_type: awe.AUTO_DETECT_DEVICE_TYPE,
+      settings: {
+        container_id: 'container',
+        default_camera_position: { x:0, y:0, z:0 },
+        default_lights:[
+          {
+            id: 'point_light',
+            type: 'point',
+            color: 0xFFFFFF,
+          },
+        ],
+      },
+      ready: function() {
+        awe.util.require([
+          {
+            capabilities: ['gum','webgl'],
+            files: [ 
+              [ '../js/awe-standard-dependencies.js', '../js/awe-standard.js'],
+              'awe-jsartoolkit-dependencies.js',
+              'awe.marker_ar.js',
+            ],
+            success: function() 
+            { 
+                awe.setup_scene();          
+                awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_1', 
+                    geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_1' 
+                });
+
+                awe.pois.add({ id:'poi_2', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_2', 
+                    geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_2' 
+                });
+                //console.log(window.awe.pois.list(0)[0].origin);
+                //alert(window.awe.pois.list(0)[0].origin);
+                //console.log("test");
+                //initScene();
+                //initMyo();
+                awe.events.add([{
+                    id: 'ar_tracking_marker',
+                    device_types: {
+                        pc: 1,
+                        android: 1
+                    },
+                    register: function(handler) {
+                        window.addEventListener('ar_tracking_marker', handler, false);
+                    },
+                    unregister: function(handler) {
+                        window.removeEventListener('ar_tracking_marker', handler, false);
+                    },
+                    handler: function(event) {
+                        if (event.detail) {
+
+                            if (event.detail['4']) { // we are mapping marker #4 to this projection
+
+                                var p = awe.projections.view('projection_1');
+
+                                console.log(event.target);
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['4'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_1'
+                                    }
+                                });
+                            }
+                            else {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_1'
+                                    }
+                                });
+                            }
+
+                            if (event.detail['27']) { // we are mapping marker #64 to this projection
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['27'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_2'
+                                    }
+                                });
+                            }
+                            else {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_2'
+                                    }
+                                });
+                            }
+                            awe.scene_needs_rendering = 1;
+                        }
+                    }
+                }])
+            
+            },
+          },
+          {
+            capabilities: [],
+            success: function() { 
+                  document.body.innerHTML = '<p>Try this demo in the latest version of Chrome or Firefox on a PC or Android device</p>';
+            },
+          },
+        ]);
+      }
+    });
+  });
+</script>
+</body>
+<script>
+var zoom = 1.0;
+var zoomIncrease = 1.0;
+
+    var initScene = function () {
+        /*console.log("test0");
+        window.scene = awe.scene;
+        window.renderer = new THREE.WebGLRenderer({
+            alpha: true
+        });
+
+        window.renderer.setClearColor(0x000000, 1);
+        window.renderer.setSize(window.innerWidth, window.innerHeight);
+
+        window.renderer.domElement.style.position = 'fixed';
+        window.renderer.domElement.style.top = 0;
+        window.renderer.domElement.style.left = 0;
+        window.renderer.domElement.style.width = '100%';
+        window.renderer.domElement.style.height = '100%';
+
+
+        document.body.appendChild(window.renderer.domElement);*/
+
+        /*var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+        directionalLight.position.set( 0, 0.5, 1 );
+        scene.add(directionalLight);*/
+
+        /*window.camera1 = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+        window.camera1.position.fromArray([0, 0, 250]);
+        window.camera1.lookAt(new THREE.Vector3(0, 0, 0));
+        
+        window.addEventListener('resize', function () {
+
+            camera1.aspect = window.innerWidth / window.innerHeight;
+            camera1.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.render(scene, camera1);
+
+        }, false);
+
+
+        scene.add(camera1);
+*/
+        /*var geometry = new THREE.BoxGeometry(150, 150, 50);
+        var material = new THREE.MeshPhongMaterial({color: 0x15bdde});
+        //window.cube = new THREE.Mesh(geometry, material);*/
+
+        //window.cube = window.awe.pois.list(1)[0].origin;
+        /*var geometry = new THREE.BoxGeometry(150, 150, 50);
+        var material = new THREE.MeshPhongMaterial({color: 0x15bdde});
+        window.cube = new THREE.Mesh(geometry, material);
+        console.log(cube);
+
+        //alert(window.awe.pois.list());
+        //window.cube = window.awe.pois.list(0)[0].origin;
+        
+        cube.position.set(0,0,0);
+        cube.castShadow = true;
+        cube.receiveShadow = true;
+        scene.add(cube);
+        
+        renderer.render(scene, camera1);*/
+
+
+        
+    };
+
+    var initMyo = function() {
+        "use strict";
+
+        window.hub = new Myo.Hub();
+        var currentPose;
+        //window.quaternion = new THREE.Quaternion();
+
+        console.log("yep");
+
+        /*window.hub.on('frame', function(frame) {
+
+            window.quaternion.x = frame.rotation.y;
+            window.quaternion.y = frame.rotation.z;
+            window.quaternion.z = -frame.rotation.x;
+            window.quaternion.w = frame.rotation.w;
+
+            if(!window.baseRotation) {
+                window.baseRotation = quaternion.clone();
+                window.baseRotation = window.baseRotation.conjugate();
+            }
+
+            window.quaternion.multiply(baseRotation);
+            window.quaternion.normalize();
+            window.quaternion.z = -quaternion.z;
+
+            window.cube.setRotationFromQuaternion(window.quaternion);
+
+            console.log("allright");
+
+            renderer.render(scene, camera1);
+            //throw new Error("Something went badly wrong!");
+        });*/
+
+        //POSE
+                window.hub.on('pose', function(pose) {
+            currentPose = pose;
+            switch(currentPose.type) {
+                case currentPose.POSE_FIST:
+                console.log("Fist of power");
+
+                var p = awe.projections.view('projection_1');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+
+                //window.cube.traverse(function(child){child.visible = true;});
+               //THREE.SceneUtils.traverseHierarchy( window.cube, function ( object ) { window.cube.visible = false; } );
+                    
+                    
+                    break;
+                case currentPose.POSE_WAVE_IN:
+                console.log("wave in");
+                
+                var p = awe.projections.view('projection_1');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+                    //currentPose = currentPose.POSE_REST;
+                    break;
+                case currentPose.POSE_WAVE_OUT:
+                console.log("wave out");
+
+                //alert(window.awe.pois.list(0)[0].origin);
+
+                var p = awe.projections.view('projection_1');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+                /*
+                awe.projections.update({
+                        data: {
+                          rotation: { x:45, y:45, z:45 }
+                        },
+                        where: {
+                          id: 'projection_1'
+                        }
+                      });
+
+                    awe.scene_needs_rendering = 1;*/
+                    //currentPose = currentPose.POSE_REST;
+                    break;
+                case currentPose.POSE_FINGERS_SPREAD:
+                console.log("fingers spread");
+
+                var p = awe.projections.view('projection_1');
+
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+               // window.cube.traverse(function(child){child.visible = false;});
+                //THREE.SceneUtils.traverseHierarchy( window.cube, function ( object ) { window.cube.visible = true; } );
+
+                    break;
+                case currentPose.POSE_TWIST_IN:
+                
+                    break;
+                case currentPose.POSE_REST:
+                default:
+                //console.log("default");
+               
+                    break;
+            }
+        });
+    };
+    initScene();
+    initMyo();
+</script>
+</html>
