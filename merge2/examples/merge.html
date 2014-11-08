@@ -24,6 +24,37 @@
 <body>
     <div id="container"></div>
 <script type="text/javascript" src="../js/awe.js"></script>
+<script>
+    var showCompose = false;
+  //addEventListener("keypress", function(event) {
+    addEventListener("mousedown", function(event) {
+        console.log("click");
+    //console.log(String.fromCharCode(event.charCode));
+    /*var p = awe.projections.view('projection_1');
+
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_1' }
+                });
+*/
+    showCompose = !showCompose;
+   // showCompose = true;
+  });
+
+    addEventListener("keypress", function(event) {
+        console.log(String.fromCharCode(event.charCode));
+
+        if(String.fromCharCode(event.charCode)=="j")
+        {
+            alert("hello juanjo!");
+        }
+    });
+</script>
 <script type="text/javascript">
   window.addEventListener('load', function() {
     window.awe.init({
@@ -50,7 +81,9 @@
             ],
             success: function() 
             { 
-                awe.setup_scene();          
+                awe.setup_scene(); 
+
+                // HYDROGEN
                 awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_1', 
@@ -61,6 +94,7 @@
                     { poi_id: 'poi_1' 
                 });
 
+                // OXYGEN
                 awe.pois.add({ id:'poi_2', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_2', 
@@ -70,6 +104,139 @@
                     }, 
                     { poi_id: 'poi_2' 
                 });
+
+                // WATER MOLECULE (COMPOSITION)
+                awe.pois.add({ id:'poi_3', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_3', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_3' 
+                });
+
+                // CARBON DIOXIDE MOLECULE (COMPOSITION)
+                awe.pois.add({ id:'poi_4', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_4', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_4' 
+                });
+
+                // EARTH
+                awe.pois.add({ id:'poi_5', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_5', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_5' 
+                });
+
+                // MARS
+                awe.pois.add({ id:'poi_6', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_6', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_6' 
+                });
+
+                // CARBON
+                awe.pois.add({ id:'poi_7', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_7', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_7' 
+                });
+
+                // BEAT1
+                awe.pois.add({ id:'poi_8', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_8', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_8' 
+                });
+
+                // BEAT2
+                awe.pois.add({ id:'poi_9', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_9', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_9' 
+                });
+
+                // BEAT3
+                awe.pois.add({ id:'poi_10', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_10', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_10' 
+                });
+
+                // BEAT4
+                awe.pois.add({ id:'poi_11', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_11', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_11' 
+                });
+
+                // SUN
+                awe.pois.add({ id:'poi_12', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_12', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_12' 
+                });
+
+                // MERCURY
+                awe.pois.add({ id:'poi_13', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_13', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_13' 
+                });
+
+                // VENUS
+                awe.pois.add({ id:'poi_14', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.projections.add({ 
+                    id:'projection_14', 
+                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    material:{ type: 'phong', color: 0xFFFFFF }, 
+                    texture: { path: 'awe_by_buildAR.png' },
+                    }, 
+                    { poi_id: 'poi_14' 
+                });
+
                 //console.log(window.awe.pois.list(0)[0].origin);
                 //alert(window.awe.pois.list(0)[0].origin);
                 //console.log("test");
@@ -90,11 +257,11 @@
                     handler: function(event) {
                         if (event.detail) {
 
+                            // HYDROGEN ELEMENT
                             if (event.detail['4']) { // we are mapping marker #4 to this projection
-
-                                var p = awe.projections.view('projection_1');
-
-                                console.log(event.target);
+                                console.log("Este es el cuatro!");
+                                if(!showCompose)
+                                {
                                 awe.pois.update({
                                     data: {
                                         visible: true,
@@ -105,6 +272,45 @@
                                         id: 'poi_1'
                                     }
                                 });
+
+                                awe.pois.update({
+                                        data: {
+                                            visible: false,
+                  position: { x:0, y:0, z:0 },
+                                            matrix: event.detail['4'].transform
+                                        },
+                                        where: {
+                                            id: 'poi_3'
+                                        }
+                                    });
+
+                                }
+
+                                if(showCompose)
+                                {
+                                    awe.pois.update({
+                                    data: {
+                                        visible: false,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['4'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_1'
+                                    }
+                                });
+
+                                    awe.pois.update({
+                                        data: {
+                                            visible: true,
+                  position: { x:0, y:0, z:0 },
+                                            matrix: event.detail['4'].transform
+                                        },
+                                        where: {
+                                            id: 'poi_3'
+                                        }
+                                    });
+                                }
+
                             }
                             else {
                                 awe.pois.update({
@@ -115,9 +321,22 @@
                                         id: 'poi_1'
                                     }
                                 });
+                                    console.log("inCompose");
+                                    awe.pois.update({
+                                        data: {
+                                            visible: false
+                                        },
+                                        where: {
+                                            id: 'poi_3'
+                                        }
+                                    });
+                                
                             }
 
+                            // OXYGEN ELEMENT
                             if (event.detail['27']) { // we are mapping marker #64 to this projection
+                                if(!showCompose)
+                                {
                                 awe.pois.update({
                                     data: {
                                         visible: true,
@@ -128,8 +347,23 @@
                                         id: 'poi_2'
                                     }
                                 });
+                                }
+                                else
+                                {
+                                    awe.pois.update({
+                                    data: {
+                                        visible: false,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['27'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_2'
+                                    }
+                                });
+                                }
                             }
-                            else {
+                            else 
+                            {
                                 awe.pois.update({
                                     data: {
                                         visible: false
@@ -138,7 +372,191 @@
                                         id: 'poi_2'
                                     }
                                 });
+                            }   
+
+
+                            // EARTH
+                            if (event.detail['5']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['5'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_5'
+                                    }
+                                });
                             }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_5'
+                                    }
+                                });
+                            } 
+
+                            // MARS
+                            if (event.detail['6']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['6'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_6'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_6'
+                                    }
+                                });
+                            }
+
+                            // CARBON
+                            if (event.detail['7']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['7'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_7'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_7'
+                                    }
+                                });
+                            }
+
+                            // BEAT1
+                            if (event.detail['8']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['8'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_8'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_8'
+                                    }
+                                });
+                            }
+
+                            // BEAT2
+                            if (event.detail['9']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['9'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_9'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_9'
+                                    }
+                                });
+                            }
+
+                            // BEAT3
+                            if (event.detail['10']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['10'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_10'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_10'
+                                    }
+                                });
+                            }
+
+                            // BEAT4
+                            if (event.detail['11']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['11'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_11'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_11'
+                                    }
+                                });
+                            }   
+
                             awe.scene_needs_rendering = 1;
                         }
                     }
