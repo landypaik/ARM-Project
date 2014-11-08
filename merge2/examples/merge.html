@@ -84,7 +84,7 @@
                 awe.setup_scene(); 
 
                 // HYDROGEN
-                awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
+                /*awe.pois.add({ id:'poi_1', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_1', 
                     geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
@@ -104,9 +104,9 @@
                     }, 
                     { poi_id: 'poi_2' 
                 });
-
+    */
                 // WATER MOLECULE (COMPOSITION)
-                awe.pois.add({ id:'poi_3', position: { x:0, y:0, z:10000 }, visible: false });
+                /*awe.pois.add({ id:'poi_3', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_3', 
                     geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
@@ -114,10 +114,10 @@
                     texture: { path: 'awe_by_buildAR.png' },
                     }, 
                     { poi_id: 'poi_3' 
-                });
+                });*/
 
                 // CARBON DIOXIDE MOLECULE (COMPOSITION)
-                awe.pois.add({ id:'poi_4', position: { x:0, y:0, z:10000 }, visible: false });
+                /*awe.pois.add({ id:'poi_4', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_4', 
                     geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
@@ -125,15 +125,15 @@
                     texture: { path: 'awe_by_buildAR.png' },
                     }, 
                     { poi_id: 'poi_4' 
-                });
+                });*/
 
                 // EARTH
                 awe.pois.add({ id:'poi_5', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_5', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    geometry: {shape: 'sphere', radius:50, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/earthmap1k.png' },
                     }, 
                     { poi_id: 'poi_5' 
                 });
@@ -142,15 +142,15 @@
                 awe.pois.add({ id:'poi_6', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_6', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    geometry: {shape: 'sphere', radius:25, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/mars_1k_color.png' },
                     }, 
                     { poi_id: 'poi_6' 
                 });
 
                 // CARBON
-                awe.pois.add({ id:'poi_7', position: { x:0, y:0, z:10000 }, visible: false });
+               /* awe.pois.add({ id:'poi_7', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
                     id:'projection_7', 
                     geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
@@ -158,7 +158,7 @@
                     texture: { path: 'awe_by_buildAR.png' },
                     }, 
                     { poi_id: 'poi_7' 
-                });
+                });*/
 
                 // BEAT1
                 awe.pois.add({ id:'poi_8', position: { x:0, y:0, z:10000 }, visible: false });
@@ -205,38 +205,37 @@
                 });
 
                 // SUN
-                awe.pois.add({ id:'poi_12', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.pois.add({ id:'poi_19', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
-                    id:'projection_12', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    id:'projection_19', 
+                    geometry: {shape: 'sphere', radius:100, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/sunmap.png' },
                     }, 
-                    { poi_id: 'poi_12' 
+                    { poi_id: 'poi_19' 
                 });
 
                 // MERCURY
-                awe.pois.add({ id:'poi_13', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.pois.add({ id:'poi_2', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
-                    id:'projection_13', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    id:'projection_2', 
+                    geometry: {shape: 'sphere', radius:20, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/mercurymap.png' },
                     }, 
-                    { poi_id: 'poi_13' 
+                    { poi_id: 'poi_2' 
                 });
 
                 // VENUS
-                awe.pois.add({ id:'poi_14', position: { x:0, y:0, z:10000 }, visible: false });
+                awe.pois.add({ id:'poi_3', position: { x:0, y:0, z:10000 }, visible: false });
                 awe.projections.add({ 
-                    id:'projection_14', 
-                    geometry: {shape: 'sphere', radius:200, widthSegments:128, heightSegments:128},
+                    id:'projection_3', 
+                    geometry: {shape: 'sphere', radius:40, widthSegments:128, heightSegments:128},
                     material:{ type: 'phong', color: 0xFFFFFF }, 
-                    texture: { path: 'awe_by_buildAR.png' },
+                    texture: { path: 'images/venusmap.png' },
                     }, 
-                    { poi_id: 'poi_14' 
+                    { poi_id: 'poi_3' 
                 });
-
                 //console.log(window.awe.pois.list(0)[0].origin);
                 //alert(window.awe.pois.list(0)[0].origin);
                 //console.log("test");
@@ -258,10 +257,11 @@
                         if (event.detail) {
 
                             // HYDROGEN ELEMENT
-                            if (event.detail['4']) { // we are mapping marker #4 to this projection
+                            /*if (event.detail['4']) 
+                            { // we are mapping marker #4 to this projection
                                 console.log("Este es el cuatro!");
-                                if(!showCompose)
-                                {
+                                //if(!showCompose)
+                                //{
                                 awe.pois.update({
                                     data: {
                                         visible: true,
@@ -273,7 +273,9 @@
                                     }
                                 });
 
-                                awe.pois.update({
+*/
+
+                                /*awe.pois.update({
                                         data: {
                                             visible: false,
                   position: { x:0, y:0, z:0 },
@@ -284,34 +286,8 @@
                                         }
                                     });
 
-                                }
-
-                                if(showCompose)
-                                {
-                                    awe.pois.update({
-                                    data: {
-                                        visible: false,
-              position: { x:0, y:0, z:0 },
-                                        matrix: event.detail['4'].transform
-                                    },
-                                    where: {
-                                        id: 'poi_1'
-                                    }
-                                });
-
-                                    awe.pois.update({
-                                        data: {
-                                            visible: true,
-                  position: { x:0, y:0, z:0 },
-                                            matrix: event.detail['4'].transform
-                                        },
-                                        where: {
-                                            id: 'poi_3'
-                                        }
-                                    });
-                                }
-
-                            }
+                                }*/
+                           /* }
                             else {
                                 awe.pois.update({
                                     data: {
@@ -320,8 +296,8 @@
                                     where: {
                                         id: 'poi_1'
                                     }
-                                });
-                                    console.log("inCompose");
+                                });*/
+                                    /*console.log("inCompose");
                                     awe.pois.update({
                                         data: {
                                             visible: false
@@ -329,15 +305,15 @@
                                         where: {
                                             id: 'poi_3'
                                         }
-                                    });
+                                    });*/
                                 
-                            }
+                            //}
 
                             // OXYGEN ELEMENT
-                            if (event.detail['27']) { // we are mapping marker #64 to this projection
-                                if(!showCompose)
-                                {
-                                awe.pois.update({
+                            /*if (event.detail['27']) { // we are mapping marker #64 to this projection*/
+                                /*if(!showCompose)
+                                {*/
+                                /*awe.pois.update({
                                     data: {
                                         visible: true,
               position: { x:0, y:0, z:0 },
@@ -346,8 +322,8 @@
                                     where: {
                                         id: 'poi_2'
                                     }
-                                });
-                                }
+                                });*/
+                               /* }
                                 else
                                 {
                                     awe.pois.update({
@@ -360,8 +336,8 @@
                                         id: 'poi_2'
                                     }
                                 });
-                                }
-                            }
+                                }*/
+                            /*}
                             else 
                             {
                                 awe.pois.update({
@@ -373,7 +349,59 @@
                                     }
                                 });
                             }   
+*/
 
+                            // VENUS
+                            if (event.detail['2']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['2'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_2'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_2'
+                                    }
+                                });
+                            } 
+
+                            // VENUS
+                            if (event.detail['3']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['3'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_3'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_3'
+                                    }
+                                });
+                            } 
 
                             // EARTH
                             if (event.detail['5']) { // we are mapping marker #64 to this projection
@@ -428,7 +456,7 @@
                             }
 
                             // CARBON
-                            if (event.detail['7']) { // we are mapping marker #64 to this projection
+                           /* if (event.detail['7']) { // we are mapping marker #64 to this projection
                                 
                                 awe.pois.update({
                                     data: {
@@ -451,7 +479,7 @@
                                         id: 'poi_7'
                                     }
                                 });
-                            }
+                            }*/
 
                             // BEAT1
                             if (event.detail['8']) { // we are mapping marker #64 to this projection
@@ -553,6 +581,32 @@
                                     },
                                     where: {
                                         id: 'poi_11'
+                                    }
+                                });
+                            }
+
+                            // SUN
+                            if (event.detail['19']) { // we are mapping marker #64 to this projection
+                                
+                                awe.pois.update({
+                                    data: {
+                                        visible: true,
+              position: { x:0, y:0, z:0 },
+                                        matrix: event.detail['19'].transform
+                                    },
+                                    where: {
+                                        id: 'poi_19'
+                                    }
+                                });
+                            }
+                            else 
+                            {
+                                awe.pois.update({
+                                    data: {
+                                        visible: false
+                                    },
+                                    where: {
+                                        id: 'poi_19'
                                     }
                                 });
                             }   
@@ -683,9 +737,11 @@ var zoomIncrease = 1.0;
                 case currentPose.POSE_FIST:
                 console.log("Fist of power");
 
-                var p = awe.projections.view('projection_1');
 
+                var p = awe.projections.view('projection_2');
 
+                if(p.scale>1)
+                {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
                     animation: {
@@ -693,9 +749,129 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
                   },
-                  where:{ id:'projection_1' }
+                  where:{ id:'projection_2', }
                 });
+                 }
 
+                 p = awe.projections.view('projection_3');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_3', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_5');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_5', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_6');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_6', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_8');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_8', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_9');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_9', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_10');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_10', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_11');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_11', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_19');
+
+                if(p.scale>1)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y-1, x: p.scale.x-1, z: p.scale.z-1 }
+                  },
+                  where:{ id:'projection_19', }
+                });
+                 }
                 //window.cube.traverse(function(child){child.visible = true;});
                //THREE.SceneUtils.traverseHierarchy( window.cube, function ( object ) { window.cube.visible = false; } );
                     
@@ -704,7 +880,7 @@ var zoomIncrease = 1.0;
                 case currentPose.POSE_WAVE_IN:
                 console.log("wave in");
                 
-                var p = awe.projections.view('projection_1');
+                var p = awe.projections.view('projection_2');
 
 
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
@@ -714,7 +890,7 @@ var zoomIncrease = 1.0;
                     },
                     rotation:{ y: p.rotation.y-180, x: p.rotation.x-180 }
                   },
-                  where:{ id:'projection_1' }
+                  where:{ id:'projection_2' }
                 });
                     //currentPose = currentPose.POSE_REST;
                     break;
@@ -723,7 +899,7 @@ var zoomIncrease = 1.0;
 
                 //alert(window.awe.pois.list(0)[0].origin);
 
-                var p = awe.projections.view('projection_1');
+                var p = awe.projections.view('projection_2');
 
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
@@ -732,7 +908,7 @@ var zoomIncrease = 1.0;
                     },
                     rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
                   },
-                  where:{ id:'projection_1' }
+                  where:{ id:'projection_2' }
                 });
                 /*
                 awe.projections.update({
@@ -750,9 +926,11 @@ var zoomIncrease = 1.0;
                 case currentPose.POSE_FINGERS_SPREAD:
                 console.log("fingers spread");
 
-                var p = awe.projections.view('projection_1');
+                
+                var p = awe.projections.view('projection_2');
 
-
+                if(p.scale<4)
+                {
                 awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
                   data:{
                     animation: {
@@ -760,13 +938,135 @@ var zoomIncrease = 1.0;
                     },
                     scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
                   },
-                  where:{ id:'projection_1' }
+                  where:{ id:'projection_2' }
                 });
+                 }
+
+                 p = awe.projections.view('projection_3');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_3' }
+                });
+                 }
+
+                 p = awe.projections.view('projection_5');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_5', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_6');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_6', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_8');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_8', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_9');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_9', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_10');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_10', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_11');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_11', }
+                });
+                 }
+
+                 p = awe.projections.view('projection_19');
+
+                if(p.scale<4)
+                {
+                awe.projections.update({ // rotate clicked object by 180 degrees around x and y axes over 10 seconds
+                  data:{
+                    animation: {
+                      duration: 3,
+                    },
+                    scale:{ y: p.scale.y+1, x: p.scale.x+1, z: p.scale.z+1 }
+                  },
+                  where:{ id:'projection_19', }
+                });
+                 }
                // window.cube.traverse(function(child){child.visible = false;});
                 //THREE.SceneUtils.traverseHierarchy( window.cube, function ( object ) { window.cube.visible = true; } );
 
                     break;
-                case currentPose.POSE_TWIST_IN:
+
+                case currentPose.POSE_THUMB_TO_PINKY:
                 
                     break;
                 case currentPose.POSE_REST:
