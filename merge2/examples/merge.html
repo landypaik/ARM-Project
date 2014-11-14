@@ -30,6 +30,10 @@
     var playing2 = false;
     var playing3 = false;
     var playing4 = false;
+    var audio1 = new Audio('sounds/sounds1.mp3');
+    var audio2 = new Audio('sounds/sounds2.mp3');
+    var audio3 = new Audio('sounds/sounds3.mp3');
+    var audio4 = new Audio('sounds/sounds4.mp3');
   //addEventListener("keypress", function(event) {
     addEventListener("mousedown", function(event) {
         console.log("click");
@@ -623,9 +627,9 @@
 
                             // BEAT1
                             if (event.detail['8']) { // we are mapping marker #64 to this projection
-                                var audio = new Audio('sounds/sounds1.mp3');
+                                //var audio = new Audio('sounds/sounds1.mp3');
                                 if(!playing1){
-                                    audio.play();
+                                    audio1.play();
                                     playing1=true;
                                 }
 
@@ -642,6 +646,10 @@
                             }
                             else 
                             {
+                                if(playing1){
+                                    audio1.pause();
+                                    playing1=false;
+                                }
                                 awe.pois.update({
                                     data: {
                                         visible: false
@@ -654,9 +662,9 @@
 
                             // BEAT2
                             if (event.detail['9']) { // we are mapping marker #64 to this projection
-                                var audio = new Audio('sounds/sounds2.mp3');
+                                //var audio = new Audio('sounds/sounds2.mp3');
                                 if(!playing2){
-                                    audio.play();
+                                    audio2.play();
                                     playing2=true;
                                 }
                                 
@@ -673,6 +681,10 @@
                             }
                             else 
                             {
+                                if(playing2){
+                                    audio2.pause();
+                                    playing2=false;
+                                }
                                 awe.pois.update({
                                     data: {
                                         visible: false
@@ -685,9 +697,9 @@
 
                             // BEAT3
                             if (event.detail['10']) { // we are mapping marker #64 to this projection
-                                var audio = new Audio('sounds/sounds3.mp3');
+                                //var audio = new Audio('sounds/sounds3.mp3');
                                 if(!playing3){
-                                    audio.play();
+                                    audio3.play();
                                     playing3=true;
                                 }
                                 awe.pois.update({
@@ -703,6 +715,11 @@
                             }
                             else 
                             {
+                                if(playing3){
+                            
+                                    audio3.pause();
+                                    playing3=false;
+                                }
                                 awe.pois.update({
                                     data: {
                                         visible: false
@@ -715,9 +732,9 @@
 
                             // BEAT4
                             if (event.detail['11']) { // we are mapping marker #64 to this projection
-                                var audio = new Audio('sounds/sounds4.mp3');
+                                //var audio = new Audio('sounds/sounds4.mp3');
                                 if(!playing4){
-                                    audio.play();
+                                    audio4.play();
                                     playing4=true;
                                 }
                                 awe.pois.update({
@@ -733,6 +750,11 @@
                             }
                             else 
                             {
+                                if(playing4){
+                                    //console.log("entering here");
+                                    audio4.pause();
+                                    playing4=false;
+                                }
                                 awe.pois.update({
                                     data: {
                                         visible: false
